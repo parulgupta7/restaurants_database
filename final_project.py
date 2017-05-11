@@ -109,7 +109,7 @@ def gconnect():
         return response
 
     # Store the access token in the session for later use.
-    session_login['credentials'] = credentials
+    session_login['credentials'] = credentials.access_token
     session_login['gplus_id'] = gplus_id
 
     # Get user info
@@ -148,7 +148,7 @@ def disconnect():
         response.headers['Content-Type'] = 'application/json'
         return response
 
-    access_token = credentials.access_token
+    access_token = credentials
     url = 'https://accounts.google.com/o/oauth2/revoke?token=%s' %access_token
     h = httplib2.Http()
     result = h.request(url,'GET')[0]
